@@ -8,5 +8,5 @@ scikit-learn
 catboost
 xgboost
 Flask
-
+dataclasses
 #-e .
