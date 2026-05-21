@@ -2,4 +2,7 @@ setuptools
 pandas 
 numpy 
 seaborn
+matplotlib
+warnings
+
 -e .
