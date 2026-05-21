@@ -3,6 +3,10 @@ pandas
 numpy 
 seaborn
 matplotlib
-warnings
+#warnings
+scikit-learn
+catboost
+xgboost
+Flask
 
--e .
+#-e .
