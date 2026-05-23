@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
-
+from sklearn.model_selection import GridSearchCV
 from src.exception import CustomException
 
 
@@ -20,13 +20,21 @@ def save_object(file_path,obj):
     except Exception as e:
         raise CustomException(e,sys)
     
-def evaluate_model(xtrain,ytrain,xtest,ytest,models):
+def evaluate_model(xtrain,ytrain,xtest,ytest,models,param):
     try:
         # xtrain,xtest,ytrain,ytest= train_test_split(x,y,test_size=0.2,random_state=42)
         report={}
         for i in range(len(models)):
             model=list(models.values())[i]
-            model.fit(xtrain,ytrain) #Train model
+            para=param[list(models.keys())[i]]
+
+            gs= GridSearchCV(model,para,cv=3)
+
+            gs.fit(xtrain,ytrain)
+            model.set_params(**gs.best_params_)
+            model.fit(xtrain,ytrain)
+             
+            # model.fit(xtrain,ytrain) #Train model
 
             ytrainpred= model.predict(xtrain)    
             ytestpred= model.predict(xtest)    
