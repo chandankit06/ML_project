@@ -10,4 +10,6 @@ xgboost
 Flask
 dataclasses
 dill
+catboost
+xgboost
 #-e .
